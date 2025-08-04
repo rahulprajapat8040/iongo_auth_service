@@ -1,0 +1,4 @@
+module: apis, auth
+feature: auth process, redis, validation
+description: user signup, login & logout apis and redis services
+author: Rahul prajapat, AUG 4, 15:50

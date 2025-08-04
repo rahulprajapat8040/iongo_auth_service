@@ -8,7 +8,8 @@ const STRINGCONST = {
     INVALID_PASSWORD: "Invalid password",
     USER_LOGIN: "Login successfull",
     USER_LOG_OUT: "Logout successfully",
-    USER_UPDATED: "Your details updated successfully"
+    USER_UPDATED: "Your details updated successfully",
+    DATA_FETCHED: "Data fetched successfully",
 }
 
 export default STRINGCONST;
