@@ -9,7 +9,7 @@ import { RedisService } from './redis.service';
         NestRedisModule.forRoot({
             type: 'single',
             options: {
-                host: 'localhost',
+                host: `${process.env.REDIS_HOST}`,
                 port: 6380,
                 password: `${process.env.REDIS_PASSWORD}`
             }
