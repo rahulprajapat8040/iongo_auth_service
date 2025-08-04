@@ -10,8 +10,7 @@ import { RedisService } from './redis.service';
             type: 'single',
             options: {
                 host: `${process.env.REDIS_HOST}`,
-                port: 6380,
-                password: `${process.env.REDIS_PASSWORD}`
+                port: Number(process.env.REDIS_PORT),
             }
         })
     ],
