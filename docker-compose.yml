@@ -11,7 +11,7 @@ services:
       MYSQL_USER: iongo_user
       MYSQL_PASSWORD: iongo_pass
     ports:
-      - '3307:3306'
+      - '3307:3306'  # Host:Container
     volumes:
       - iongo-mysql-auth-data:/var/lib/mysql
     networks:
@@ -22,7 +22,7 @@ services:
     container_name: iongo-auth-redis
     restart: unless-stopped
     ports:
-      - '6380:6379'
+      - '6380:6379'  # Host:Container
     networks:
       - iongo-net
 
