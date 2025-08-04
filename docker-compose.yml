@@ -13,7 +13,7 @@ services:
     ports:
       - '3307:3306'
     volumes:
-      - iongo-mysql-data:/var/lib/mysql
+      - iongo-mysql-auth-data:/var/lib/mysql
     networks:
       - iongo-net
 
