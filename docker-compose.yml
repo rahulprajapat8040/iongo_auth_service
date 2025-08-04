@@ -42,7 +42,7 @@ services:
       - iongo-net
 
 volumes:
-  iongo-mysql-data:
+  iongo-mysql-auth-data:
 
 networks:
   iongo-net:
