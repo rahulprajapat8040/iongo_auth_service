@@ -11,7 +11,7 @@ services:
       MYSQL_USER: iongo_user
       MYSQL_PASSWORD: iongo_pass
     ports:
-      - '3307:3306'  # Host:Container
+      - '3307:3306'
     volumes:
       - iongo-mysql-auth-data:/var/lib/mysql
     networks:
@@ -22,20 +22,38 @@ services:
     container_name: iongo-auth-redis
     restart: unless-stopped
     ports:
-      - '6380:6379'  # Host:Container
+      - '6380:6379'
     networks:
       - iongo-net
 
-  iongo-auth-service:
-    container_name: iongo-auth-service
+  iongo-auth-3000:
+    container_name: iongo-auth-3000
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:3001'
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+    depends_on:
+      - iongo-mysql
+      - iongo-redis
+    networks:
+      - iongo-net
+
+  iongo-auth-3001:
+    container_name: iongo-auth-3001
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
       - '3001:3001'
     env_file:
       - .env
+    environment:
+      - PORT=3001
     depends_on:
       - iongo-mysql
       - iongo-redis

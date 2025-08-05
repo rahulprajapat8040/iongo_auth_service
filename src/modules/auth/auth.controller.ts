@@ -5,7 +5,7 @@ import { Request } from "express";
 import { User } from "src/models";
 import { MulterRequest } from "src/types/multer.type";
 
-@Controller("auth")
+@Controller()
 export class AuthController {
     constructor(
         private readonly authService: AuthService
