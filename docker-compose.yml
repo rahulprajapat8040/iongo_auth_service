@@ -19,7 +19,7 @@ services:
 
   iongo-redis:
     image: redis:7
-    container_name: iongo-auth-redis
+    container_name: iongo-redis
     restart: unless-stopped
     ports:
       - '6380:6379'
