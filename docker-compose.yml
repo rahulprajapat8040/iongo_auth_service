@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  iongo-auth-mysql:
+  iongo-mysql:
     image: mysql:8
     container_name: iongo-auth-mysql
     restart: unless-stopped
@@ -15,23 +15,22 @@ services:
     volumes:
       - iongo-mysql-auth-data:/var/lib/mysql
     networks:
-      - iongo-auth-net
+      - iongo-net
 
-  iongo-auth-redis:
+  iongo-redis:
     image: redis:7
-    container_name: iongo-auth-redis
+    container_name: iongo-redis
     restart: unless-stopped
     ports:
       - '6380:6379'
     networks:
-      - iongo-auth-net
+      - iongo-net
 
   iongo-auth-3000:
     container_name: iongo-auth-3000
     build:
       context: .
       dockerfile: Dockerfile
-    image: iongo-auth-service
     ports:
       - '3000:3000'
     env_file:
@@ -39,15 +38,16 @@ services:
     environment:
       - PORT=3000
     depends_on:
-      - iongo-auth-mysql
-      - iongo-auth-redis
+      - iongo-mysql
+      - iongo-redis
     networks:
-      - iongo-auth-net
       - iongo-net
 
   iongo-auth-3001:
     container_name: iongo-auth-3001
-    image: iongo-auth-service
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - '3001:3001'
     env_file:
@@ -55,16 +55,13 @@ services:
     environment:
       - PORT=3001
     depends_on:
-      - iongo-auth-mysql
-      - iongo-auth-redis
+      - iongo-mysql
+      - iongo-redis
     networks:
-      - iongo-auth-net
       - iongo-net
 
 volumes:
   iongo-mysql-auth-data:
 
 networks:
-  iongo-auth-net:
   iongo-net:
-    external: true

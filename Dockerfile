@@ -9,18 +9,18 @@ FROM base AS builder
 COPY . .
 RUN npm run build
 
-# ********* PRODUCTION STAGE *********
-FROM node:20-alpine AS production
+# ******** PRODUCATION STAGE *********
+FROM node:20-alpine AS producation 
 WORKDIR /app
 
-# Copy only what's needed
+# COPY node_modules and dist
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY .env .env
 
-# Expose a default port (but overridden by env var in compose)
+# Expose both ports
 EXPOSE 3000
 EXPOSE 3001
 
-# Start the app
+# Run the app
 CMD ["node", "dist/main"]
