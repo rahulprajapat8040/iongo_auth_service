@@ -16,7 +16,6 @@ WORKDIR /app
 # Copy node_modules and dist
 COPY --from=base /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY .env .env
 
 # Expose both ports
 EXPOSE 3000
