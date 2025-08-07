@@ -27,6 +27,7 @@ services:
       - iongo-net
 
   iongo-auth-3000:
+    image: iongo-auth-service
     container_name: iongo-auth-3000
     build:
       context: .
@@ -44,10 +45,8 @@ services:
       - iongo-net
 
   iongo-auth-3001:
+    image: iongo-auth-service
     container_name: iongo-auth-3001
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
       - '3001:3001'
     env_file:
