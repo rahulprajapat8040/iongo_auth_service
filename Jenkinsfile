@@ -5,6 +5,10 @@ pipeline {
         label 'agent1'
     }
 
+    environment {
+        ENV_FILE_PATH = '/etc/jenkins-secrets/envs/iongo-auth.env'
+    }
+
     stages {
         stage('Pull Code') {
             steps {
@@ -40,7 +44,7 @@ pipeline {
 
         stage('Dokcer Compose Up') {
             steps {
-                sh 'docker compose up'
+                sh 'docker compose --env-file=$ENV_FILE_PATH up -d --build'
             }
         }
     }
