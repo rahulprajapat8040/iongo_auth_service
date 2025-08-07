@@ -1,4 +1,4 @@
-module: apis, auth
-feature: auth process, redis, validation
-description: user signup, login & logout apis and redis services
-author: Rahul prajapat, AUG 4, 15:50
+module: test cases, jenkinsfile
+feature: created test cases for auth service added jenkins file
+description: created test cases for auth service added jenkins file for ci cd
+author: Rahul prajapat, AUG 7, 11:16

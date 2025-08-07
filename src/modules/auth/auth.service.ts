@@ -135,6 +135,16 @@ export class AuthService {
         }
     };
 
+    async logoutFromAllDevices(user: User) {
+        try {
+            await this.deviceModel.destroy({ where: { userId: user.id }, force: true });
+            return responseSender(STRINGCONST.USER_LOG_OUT, HttpStatus.OK, true, null);
+        } catch (error) {
+            SendError(error.message)
+        }
+    }
+
+    // GET USER IF TOKEN AVAILABLE
     async getUserInfo(user: User) {
         try {
             if (!user) {
@@ -146,6 +156,7 @@ export class AuthService {
         }
     }
 
+    // UPDATE USER INFO ----- 
     async updateUserInfo(req: MulterRequest) {
         const { file, body } = await this.fileService.uploadFile(req, 'profile')
         try {

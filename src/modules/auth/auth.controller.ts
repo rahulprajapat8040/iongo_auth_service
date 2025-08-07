@@ -47,6 +47,13 @@ export class AuthController {
         return this.authService.logout(deviceId)
     };
 
+    @Get("log-out-all-devices")
+    async logOutAllDevices(
+        @Req() req: Request
+    ) {
+        return this.authService.logoutFromAllDevices(req.user as User)
+    }
+
     @Get('get-user-info')
     async getUserInfo(
         @Req() req: Request
