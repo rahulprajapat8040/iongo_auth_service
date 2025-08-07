@@ -42,6 +42,7 @@ export class AuthService {
         try {
             const { otp, phoneNo, countryCode } = OTPVerifyDto;
             const storedOtp = await this.redisService.get(`otp:${countryCode}-${phoneNo}`)
+            console.log('stored otp is', storedOtp)
             if (!storedOtp || storedOtp !== otp) {
                 SendError(STRINGCONST.INVALID_OTP);
             };

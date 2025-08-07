@@ -23,6 +23,7 @@ export class AuthController {
     async verifyOTP(
         @Body() OTPVerifyDto: OTPVerifyDto
     ) {
+        console.log('api get called')
         return this.authService.verifyOTP(OTPVerifyDto);
     };
 
