@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage('Provide .env') {
+        stage('Prepare .env') {
             steps {
                 sh 'cp /etc/jenkins-secrets/envs/iongo-auth.env .env'
             }
